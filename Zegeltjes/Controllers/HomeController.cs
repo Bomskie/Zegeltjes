@@ -15,6 +15,8 @@ namespace Zegeltjes.Controllers
             //DIT VERWIJDEREN NA DEV
             HttpContext.Session.SetString(SessionName, $"Robin Velthuys");
             HttpContext.Session.SetInt32(SessionId, 2);
+
+
             //EINDE VERWIJDEREN
 
             return View();
