@@ -1,0 +1,32 @@
+﻿html {
+    position: relative;
+    min-height: 100%;
+    line-height: 1.15;
+}
+body {
+    margin-bottom: 60px;
+}
+
+#Wrapper {
+    min-height: 100%;
+    position: relative;
+}
+#Body {
+    padding: 10px;
+    padding-bottom: 135px; /* Height of the footer */
+}
+
+#Footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #6cf;
+}
+#LoginDiv {
+    width: 500px;
+    left: 50%;
+    top: 200px;
+}
+#LoginDiv input{
+    border-radius: 25;
+}

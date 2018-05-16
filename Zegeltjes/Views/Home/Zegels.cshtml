@@ -1,0 +1,103 @@
+﻿@model Zegeltjes.Models.Aanbiedingen.ZegelsViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<script>
+    $(document).ready(function () {
+        LaadGegevensIn();
+        VulZonderFilter();
+
+        function LaadGegevensIn() {
+            $("#ActieFilter").append(
+                @foreach (Zegeltjes_Models.Actie actie in Model.Acties)
+                {
+                    @:"<option value=@actie.ActieID>@actie.WinkelNaam - @actie.ActieNaam</option>",
+                }
+            );
+        }
+
+        $("#ActieFilter").change(function () {
+            if ($("#ActieFilter").val() != 0){
+                $("#AanbiedingLijst").empty();
+
+                @foreach (Zegeltjes_Models.Aanbieding aanbieding in Model.Aanbiedingen)
+                {
+                    @:if (@aanbieding.Actie.ActieID == $("#ActieFilter").val())
+                    @:{
+                        @:$("#AanbiedingLijst").append(
+                            @:"<a href='/aanbieding/@aanbieding.AanbiedingID' style='text-decoration: none; color: black;'>"+
+                            @:"<div class='row' style='height: 50px; margin-top: 20px; border: 0.5px solid #e3e3e3;'>"+
+                            @:"<div class='col-sm-3' style='background-color: gray; height: 50px;'>"+
+
+                            @:"</div>"+
+                            @:"<div class='col-sm-9'>"+
+                                @:"<div class='row'>"+
+                                    @:"<div class='col-sm-12'>"+
+                                        @:"<b>@aanbieding.Actie.WinkelNaam - @aanbieding.Actie.ActieNaam</b>"+
+                                        @:"<br />"+
+                                        @: "@aanbieding.RuilVoorwaarden" +
+                                    @:"</div>"+
+                                @:"</div>"+
+                            @:"</div>"+
+                            @:"</div>"+
+                            @:"</a>"
+                        @:);
+                    @:}
+                }
+            }
+            else {
+                VulZonderFilter();
+            }
+        });
+
+        function VulZonderFilter() {
+            $("#AanbiedingLijst").empty();
+            $("#AanbiedingLijst").append(
+                @foreach (Zegeltjes_Models.Aanbieding aanbieding in Model.Aanbiedingen)
+                {
+                    @:"<a href='/aanbieding/@aanbieding.AanbiedingID' style='text-decoration: none; color: black;'>"+
+                    @:"<div class='row' style='height: 50px; margin-top: 20px; border: 0.5px solid #e3e3e3;'>"+
+                        @:"<div class='col-sm-3' style='background-color: gray; height: 50px;'>"+
+
+                        @:"</div>"+
+                        @:"<div class='col-sm-9'>"+
+                            @:"<div class='row'>"+
+                                @:"<div class='col-sm-12'>"+
+                                    @:"<b>@aanbieding.Actie.WinkelNaam - @aanbieding.Actie.ActieNaam</b>"+
+                                    @:"<br />"+
+                                    @: "@aanbieding.RuilVoorwaarden" +
+                                @:"</div>"+
+                            @:"</div>"+
+                        @:"</div>"+
+                    @:"</div>"+
+                @:"</a>",
+                }
+            );
+        }
+    });
+
+
+</script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <b>Filter op actie</b><br/>
+                    <select class="form-control" id="ActieFilter">
+                        <option value="0"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" id="AanbiedingLijst">
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>

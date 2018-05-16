@@ -1,0 +1,44 @@
+﻿@model Zegeltjes.Models.Aanbiedingen.VoegAanbiedingToeModel
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>Aanbieding toevoegen</h1>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+            <form name="VoegAanbiedingToeForm" asp-action="VoegAanbiedingToe" asp-controller="Home" method="post">
+                <div class="form-group">
+                    <label for="Actie">Actie</label>
+                    <select class="form-control" asp-for="actie">
+                        @foreach (Zegeltjes_Models.Actie actie in Model.Acties)
+                        {
+                            <option value="@actie.ActieID">
+                                @actie.WinkelNaam - @actie.ActieNaam
+                            </option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Type">Type</label>
+                    <select class="form-control" asp-for="type">
+                        <option>Aanbieding</option>
+                        <option>Ruilen</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Omschrijving">Omschrijving</label>
+                    <textarea class="form-control" style="resize: none" required asp-for="omschrijving">
+
+                    </textarea>
+                </div>
+                <button class="btn btn-primary" type="submit">Toevoegen</button>
+            </form>
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model Zegeltjes.Models.Aanbiedingen.AanbiedingViewModel;
+@using System.Linq;
+@using Microsoft.AspNetCore.Http;
+
+<div class="container-fluid">
+    <div class="row">
+        @if (Convert.ToInt32(Context.Session.GetInt32("_ID")) == Model.Aanbieding.Gebruiker.ID)
+        {
+            <div class="col">
+                <a href="/VerwijderAanbieding/@Model.Aanbieding.AanbiedingID"><div type="button" class="btn btn-info">Verwijder deze aanbieding</div></a>
+            </div>
+        }
+        else
+        {
+            @if (Model.Claims.Any(g => g.GebruikerID == Convert.ToInt32(Context.Session.GetInt32("_ID"))))
+            {
+                <div class="col">
+                    <a href="/Claim/@Model.Aanbieding.AanbiedingID"><div type="button" class="btn btn-info disabled">Claim deze aanbieding</div></a>
+                </div>
+            }
+            else
+            {
+                <div class="col">
+                    <a href="/Claim/@Model.Aanbieding.AanbiedingID"><div type="button" class="btn btn-info">Claim deze aanbieding</div></a>
+                </div>
+            }
+        }
+
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-4">
+
+            <h3>@Model.Aanbieding.Actie.WinkelNaam - @Model.Aanbieding.Actie.ActieNaam
+                <br />
+            Aangeboden door @Model.Aanbieding.Gebruiker.Voornaam</h3>
+
+            Type: @Model.Aanbieding.RuilVoorwaarden<br/>
+            Omschrijving: @Model.Aanbieding.Omschrijving<br />
+
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>

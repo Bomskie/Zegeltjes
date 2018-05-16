@@ -1,0 +1,39 @@
+﻿@model Zegeltjes.Models.Account.RegisterModel
+<div id="LoginDiv" class="container">
+    <div class="row">
+        <div class="center-block">
+            <h1>Regristreren</h1>
+        </div>
+    </div>
+    <div class="row">
+        <form name="RegisterForm" asp-action="Register" asp-controller="Home" method="post">
+            <div class="form-group">
+                <label for="RegisterMail">E-Mail</label>
+                <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="E-mail" required asp-for="Mail">
+            </div>
+            <div class="form-group">
+                <label for="RegisterVoornaam">Voornaam</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Voornaam" required asp-for="Voornaam">
+            </div>
+            <div class="form-group">
+                <label for="RegisterAchternaam">Achternaam</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Achternaam" required asp-for="Achternaam">
+            </div>
+            <div class="form-group">
+                <label for="RegisterPostcode">Postcode</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Postcode" required asp-for="Postcode">
+            </div>
+            <div class="form-group">
+                <label for="RegisterPostcode">Huisnummer</label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Huisnummer" required asp-for="Huisnummer">
+            </div>
+            <div class="form-group">
+                <label for="RegisterPassword">Wachtwoord</label>
+                <input type="password" class="form-control" placeholder="Wachtwoord" required asp-for="Wachtwoord">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Account maken</button>
+        </form>
+        <span style="color:red">@Html.ValidationMessage("1")</span>
+    </div>
+</div>

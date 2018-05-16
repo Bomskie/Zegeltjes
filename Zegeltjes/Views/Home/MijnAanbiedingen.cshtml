@@ -1,0 +1,43 @@
+﻿@model Zegeltjes.Models.Aanbiedingen.MijnAanbiedingModel;
+@using System.Data;
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <a href="/VoegAanbiedingToe"><div type="button" class="btn btn-info">Voeg een aanbieding toe</div></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-4">
+           
+
+            @foreach (Zegeltjes_Models.Aanbieding aanbieding in Model.AlleAanbiedingen)
+            {
+                <a href="/aanbieding/@aanbieding.AanbiedingID" style="text-decoration: none; color: black;">
+                    <div class="row" style="height: 50px; margin-top: 20px; border: 0.5px solid #e3e3e3;">
+                        <div class="col-sm-3" style="background-color: gray; height: 50px;">
+
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <b>@aanbieding.Actie.WinkelNaam - @aanbieding.Actie.ActieNaam</b>
+                                    <br />
+                                    @aanbieding.RuilVoorwaarden
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
+            
+
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>

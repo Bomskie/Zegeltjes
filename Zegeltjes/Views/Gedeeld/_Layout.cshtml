@@ -1,0 +1,111 @@
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            line-height: 60px;
+            background-color: #101010;
+        }
+        .footer p{
+          margin: 0;
+          color: white;
+        }
+    </style>
+
+    <link href="~/css/Style/custom.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Logo</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a asp-action="Index">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                
+                <ul class="nav navbar-nav navbar-right">
+                    @{var s = Context.Session.GetString("_Naam");}
+                    @if (s == null)
+                    {
+                        <li>
+                            <a href="/Inloggen"><span class="glyphicon glyphicon-log-in"></span> Inloggen</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="/MijnAanbiedingen"><span class="glyphicon glyphicon-th-list"></span> Zegeltjes</a>
+                        </li>
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-user"></span> @s</a>
+                        </li>
+
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container text-center" style="padding: 60px 15px 0;">
+
+            <!--
+                <h3>What We Do</h3><br>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                        <p>Current Project</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+                        <p>Project 2</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="well">
+                            <p>Some text..</p>
+                        </div>
+                        <div class="well">
+                            <p>Some text..</p>
+                        </div>
+                    </div>
+                </div>
+                -->
+            @RenderBody()
+        </div><br>
+    </main>
+    <footer class="text-center footer">
+        <p>Footer Text</p>
+    </footer>
+
+</body>
+</html>
