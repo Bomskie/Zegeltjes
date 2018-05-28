@@ -14,7 +14,7 @@ namespace Zegeltjes_DAL
         }
         public override List<Aanbieding> Execute()
         {
-            DraaiQuery($"SELECT aanbieding.`AanbiedingID`, actie.Naam, aanbieding.Ruilvoorwaarden, aanbieding.Omschrijving, winkelketen.Naam, gebruiker.GebruikerID, aanbieding.ActieID FROM aanbieding INNER JOIN actie ON actie.ActieID = aanbieding.ActieID INNER JOIN winkelketen on actie.WinkelID = winkelketen.WinkelID INNER JOIN gebruiker ON aanbieding.GebruikerID = gebruiker.GebruikerID where gebruiker.Plaats = '{Plaats}'");
+            DraaiQuery($"SELECT aanbieding.`AanbiedingID`, actie.Naam, aanbieding.Ruilvoorwaarden, aanbieding.Omschrijving, winkelketen.Naam, gebruiker.GebruikerID, aanbieding.ActieID FROM aanbieding INNER JOIN actie ON actie.ActieID = aanbieding.ActieID INNER JOIN winkelketen on actie.WinkelID = winkelketen.WinkelID INNER JOIN gebruiker ON aanbieding.GebruikerID = gebruiker.GebruikerID where gebruiker.Plaats = '{Plaats}' and aanbieding.AanbiedingID not in(SELECT claims.AanbiedingID from claims WHERE claims.Toegekend = 1)");
 
             List<Aanbieding> Aanbiedingen = new List<Zegeltjes_Models.Aanbieding>();
             foreach (DataRow dr in dtResult.Rows)

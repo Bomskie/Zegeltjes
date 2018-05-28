@@ -15,8 +15,6 @@ namespace Zegeltjes.Controllers
             //DIT VERWIJDEREN NA DEV
             HttpContext.Session.SetString(SessionName, $"Robin Velthuys");
             HttpContext.Session.SetInt32(SessionId, 2);
-
-
             //EINDE VERWIJDEREN
 
             return View();
@@ -124,13 +122,13 @@ namespace Zegeltjes.Controllers
                 Models.Aanbiedingen.AanbiedingViewModel aanbiedingModel = new Models.Aanbiedingen.AanbiedingViewModel();
                 Zegeltjes_Logic.AanbiedingLogic aanbiedingHelper = new Zegeltjes_Logic.AanbiedingLogic();
                 Zegeltjes_Models.Aanbieding res = aanbiedingHelper.HaalAanbiedingOp(aanbiedingID);
-                aanbiedingModel.Claims = aanbiedingHelper.HaalClaimsOp(aanbiedingID);
+                //aanbiedingModel.Claims = aanbiedingHelper.HaalClaimsOp(aanbiedingID);
                 if (res != null)
                 {
                     aanbiedingModel.Aanbieding = res;
-                    if (aanbiedingModel.Claims == null)
+                    if (res.Claims == null)
                     {
-                        aanbiedingModel.Claims = new System.Collections.Generic.List<Zegeltjes_Models.Claim>();
+                        res.Claims = new System.Collections.Generic.List<Zegeltjes_Models.Claim>();
                     }
 
                     return View(aanbiedingModel);
@@ -265,6 +263,18 @@ namespace Zegeltjes.Controllers
                 ModelState.AddModelError("1", "Niks gevonden");
                 return View("Index");
             }            
+        }
+
+        [HttpGet]
+        public IActionResult ClaimToekennen(int id)
+        {
+            string sessionId = HttpContext.Session.GetInt32("_ID").ToString();
+            if (sessionId != "")
+            {
+                Zegeltjes_Logic.AanbiedingLogic aanbiedingLogic = new Zegeltjes_Logic.AanbiedingLogic();
+                aanbiedingLogic.KenClaimToe(id);
+            }
+            return RedirectToAction("MijnAanbiedingen");
         }
         #endregion
     }

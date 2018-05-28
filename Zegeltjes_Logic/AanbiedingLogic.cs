@@ -35,7 +35,9 @@ namespace Zegeltjes_Logic
         public Zegeltjes_Models.Aanbieding HaalAanbiedingOp(int aanbiedingID)
         {
             Zegeltjes_DAL.HaalAanbiedingOpCommand haalAanbiedingOpCommand = new Zegeltjes_DAL.HaalAanbiedingOpCommand(aanbiedingID);
-            return haalAanbiedingOpCommand.Execute();
+            Zegeltjes_Models.Aanbieding aanbieding = haalAanbiedingOpCommand.Execute();
+            aanbieding.Claims = HaalClaimsOp(aanbiedingID);
+            return aanbieding;
         }
 
         public bool VerwijderAanbieding(int aanbiedingID, int gebruikerID)
@@ -64,12 +66,13 @@ namespace Zegeltjes_Logic
             Zegeltjes_DAL.HaalClaimsOpCommand haalClaimsOpCommand = new Zegeltjes_DAL.HaalClaimsOpCommand(aanbiedingID);
             return haalClaimsOpCommand.Execute();
         }
+
         public bool ClaimAanbieding(int aanbiedingID, int gebruikerID)
         {
             Zegeltjes_DAL.HaalAanbiedingOpCommand haalAanbiedingOpCommand = new Zegeltjes_DAL.HaalAanbiedingOpCommand(aanbiedingID);
             if (haalAanbiedingOpCommand.Execute().Gebruiker.ID != gebruikerID)
             {
-                if (HaalClaimsOp(aanbiedingID).Any(g => g.GebruikerID == gebruikerID))
+                if (HaalClaimsOp(aanbiedingID).Any(g => g.gebruiker.ID == gebruikerID))
                 {
                     return false;
                 }
@@ -84,6 +87,12 @@ namespace Zegeltjes_Logic
             {
                 return false;
             }
+        }
+
+        public bool KenClaimToe(int ClaimId)
+        {
+            Zegeltjes_DAL.ClaimToekennenCommand claimToekennen = new Zegeltjes_DAL.ClaimToekennenCommand(ClaimId);
+            return claimToekennen.Execute();
         }
     }
 }

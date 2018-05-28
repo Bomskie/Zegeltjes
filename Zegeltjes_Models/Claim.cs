@@ -6,8 +6,7 @@ namespace Zegeltjes_Models
 {
     public class Claim
     {
-        public int GebruikerID { get; set; }
-        public int AanbiedingID { get; set; }
+        public Gebruiker gebruiker { get; set; }
         public int ClaimID { get; set; }
     }
 }

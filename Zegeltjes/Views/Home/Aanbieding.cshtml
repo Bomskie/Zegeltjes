@@ -12,7 +12,7 @@
         }
         else
         {
-            @if (Model.Claims.Any(g => g.GebruikerID == Convert.ToInt32(Context.Session.GetInt32("_ID"))))
+            @if (Model.Aanbieding.Claims.Any(g => g.gebruiker.ID == Convert.ToInt32(Context.Session.GetInt32("_ID"))))
             {
                 <div class="col">
                     <a href="/Claim/@Model.Aanbieding.AanbiedingID"><div type="button" class="btn btn-info disabled">Claim deze aanbieding</div></a>
@@ -45,4 +45,38 @@
 
         </div>
     </div>
+    @if (Convert.ToInt32(Context.Session.GetInt32("_ID")) == Model.Aanbieding.Gebruiker.ID)
+    {
+        <div class="row">
+            <div class="col-sm-4">
+
+            </div>
+            <div class="col-sm-4">
+
+                <h3>
+                    Claims
+                </h3>
+
+               @foreach(Zegeltjes_Models.Claim claim in Model.Aanbieding.Claims)
+               {
+                   <div class="row">
+                       <div class="col-sm-9">
+                           @claim.gebruiker.Voornaam @claim.gebruiker.Achternaam
+                       </div>
+                       <div class="col-sm-3">
+                           <a href="/ClaimToekennen/@claim.ClaimID">
+                               <div type="button" class="btn btn-info ClaimKnop">
+                                   Toekennen
+                               </div>
+                           </a>
+                       </div>
+                   </div>
+               }
+
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+        </div>
+    }
 </div>

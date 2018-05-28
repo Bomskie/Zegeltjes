@@ -1,4 +1,6 @@
-﻿namespace Zegeltjes_Models
+﻿using System.Collections.Generic;
+
+namespace Zegeltjes_Models
 {
     public class Aanbieding
     {
@@ -7,5 +9,6 @@
         public string Omschrijving { get; set; }
         public Actie Actie { get; set; }
         public Gebruiker Gebruiker { get; set; }
+        public List<Claim> Claims { get; set; }
     }
 }

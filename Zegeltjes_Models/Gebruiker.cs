@@ -8,5 +8,6 @@ namespace Zegeltjes_Models
     {
        public int ID { get; set; }
        public string Voornaam { get; set; }
+       public string Achternaam { get; set; }
     }
 }

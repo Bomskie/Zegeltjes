@@ -15,14 +15,18 @@ namespace Zegeltjes_DAL
         }
         public override List<Claim> Execute()
         {
-            DraaiQuery($"SELECT `ClaimID`, `GebruikerID`, `AanbiedingID` FROM claims WHERE AanbiedingID = '{AanbiedingID}'");
+            DraaiQuery($"SELECT gebruiker.Voornaam, gebruiker.Achternaam, gebruiker.GebruikerID, claims.ClaimID FROM claims INNER JOIN gebruiker on gebruiker.GebruikerID = claims.GebruikerID  WHERE claims.AanbiedingID = '{AanbiedingID}'");
             List<Claim> AlleClaims = new List<Claim>();
             foreach (DataRow dr in dtResult.Rows)
             {
-                AlleClaims.Add(new Claim(){
-                    ClaimID = Convert.ToInt32(dr[0].ToString()),
-                    GebruikerID = Convert.ToInt32(dr[1].ToString()),
-                    AanbiedingID = Convert.ToInt32(dr[2].ToString())
+                AlleClaims.Add(new Claim() {
+                    gebruiker = new Gebruiker()
+                    {
+                        Voornaam = dr[0].ToString(),
+                        Achternaam = dr[1].ToString(),
+                        ID = Convert.ToInt32(dr[2].ToString())
+                    },
+                    ClaimID = Convert.ToInt32(dr[3].ToString())
                 });
             }
             return AlleClaims;

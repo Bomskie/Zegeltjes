@@ -89,6 +89,11 @@ namespace Zegeltjes
                    defaults: new { Controller = "Home", Action = "Claim" }
                    );
                 routes.MapRoute(
+                   name: "ClaimToekennen",
+                   template: "ClaimToekennen/{*id}",
+                   defaults: new { Controller = "Home", Action = "ClaimToekennen" }
+                   );
+                routes.MapRoute(
                    name: "Zegels",
                    template: "Zegels/{*Plaats}",
                    defaults: new { Controller = "Home", Action = "Zegels" }
