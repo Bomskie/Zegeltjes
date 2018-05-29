@@ -13,8 +13,8 @@ namespace Zegeltjes.Controllers
         public IActionResult Index()
         {
             //DIT VERWIJDEREN NA DEV
-            HttpContext.Session.SetString(SessionName, $"Robin Velthuys");
-            HttpContext.Session.SetInt32(SessionId, 2);
+           // HttpContext.Session.SetString(SessionName, $"Robin Velthuys");
+           // HttpContext.Session.SetInt32(SessionId, 2);
             //EINDE VERWIJDEREN
 
             return View();
@@ -64,8 +64,8 @@ namespace Zegeltjes.Controllers
         [HttpPost]
         public IActionResult Login(Models.Account.LoginModel loginModel)
         {
-            Zegeltjes_Logic.LoginService loginService = new Zegeltjes_Logic.LoginService(loginModel.Mail, loginModel.Wachtwoord);
-            Zegeltjes_Models.LoginModel result = loginService.CheckLogin();
+            Zegeltjes_Logic.AccountLogic accountLogic = new Zegeltjes_Logic.AccountLogic();
+            Zegeltjes_Models.LoginModel result = accountLogic.LogGebruikerIn(loginModel.Mail, loginModel.Wachtwoord);
             if (result == null)
             {
                 ModelState.AddModelError("1","Ongeldige gebruikersnaam en of wachtwoordCombinatie");
@@ -91,8 +91,8 @@ namespace Zegeltjes.Controllers
         [HttpPost]
         public IActionResult Register(Models.Account.RegisterModel registerModel)
         {
-            Zegeltjes_Logic.RegisterService registerService = new Zegeltjes_Logic.RegisterService(registerModel.Mail, registerModel.Wachtwoord, registerModel.Voornaam, registerModel.Achternaam, registerModel.Postcode, registerModel.Postcode);
-            string response = registerService.RegristreerGebruiker();
+            Zegeltjes_Logic.AccountLogic accountLogic = new Zegeltjes_Logic.AccountLogic();
+            string response = accountLogic.RegistreerGebruiker(registerModel.Mail, registerModel.Wachtwoord, registerModel.Voornaam, registerModel.Achternaam, registerModel.Postcode, registerModel.Postcode);
             if (response == null)
             {
                 return RedirectToAction("Inloggen");

@@ -22,7 +22,7 @@ namespace Zegeltjes_DAL
                 return new Zegeltjes_Models.LoginModel() {
                     GebruikerID = dtResult.Rows[0][0].ToString(),
                     Voornaam = dtResult.Rows[0][1].ToString(),
-                    Achternaam = dtResult.Rows[0][1].ToString()
+                    Achternaam = dtResult.Rows[0][2].ToString()
                 };
             }
             else
