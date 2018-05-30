@@ -12,7 +12,7 @@
         }
         else
         {
-            @if (Model.Aanbieding.Claims.Any(g => g.gebruiker.ID == Convert.ToInt32(Context.Session.GetInt32("_ID"))))
+            if (Model.Aanbieding.Claims.Any(g => g.gebruiker.ID == Convert.ToInt32(Context.Session.GetInt32("_ID"))))
             {
                 <div class="col">
                     <a href="/Claim/@Model.Aanbieding.AanbiedingID"><div type="button" class="btn btn-info disabled">Claim deze aanbieding</div></a>

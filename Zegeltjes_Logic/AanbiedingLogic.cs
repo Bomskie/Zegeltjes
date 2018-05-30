@@ -94,5 +94,11 @@ namespace Zegeltjes_Logic
             Zegeltjes_DAL.ClaimToekennenCommand claimToekennen = new Zegeltjes_DAL.ClaimToekennenCommand(ClaimId);
             return claimToekennen.Execute();
         }
+
+        public int TestHelper()
+        {
+            Zegeltjes_DAL.AanbiedingTestHelperCommand helper = new Zegeltjes_DAL.AanbiedingTestHelperCommand();
+            return helper.Execute();
+        }
     }
 }

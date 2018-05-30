@@ -8,9 +8,9 @@ namespace Zegeltjes_DAL
     {
         public override List<Zegeltjes_Models.Actie> Execute()
         {
-            string jaar = System.DateTime.Now.Year.ToString();
-            string maand = System.DateTime.Now.Month.ToString();
-            string dag = System.DateTime.Now.Day.ToString();
+            string jaar = DateTime.Now.Year.ToString();
+            string maand = DateTime.Now.Month.ToString();
+            string dag = DateTime.Now.Day.ToString();
             string vandaag = $"{jaar}-{maand}-{dag}";
             DraaiQuery($"SELECT actie.Naam, winkelketen.Naam, actie.ActieID FROM `actie` INNER JOIN `winkelketen` on actie.WinkelID = winkelketen.WinkelID WHERE actie.ActieBegin<='{vandaag}' and actie.ActieEind>='{vandaag}'");
             //return dtResult;
