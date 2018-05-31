@@ -7,7 +7,7 @@ namespace Zegeltjes_DAL
 {
     public class HaalAanbiedingenOpCommand : Command<List<Aanbieding>>
     {
-        string Plaats;
+        private string Plaats;
         public HaalAanbiedingenOpCommand(string plaats)
         {
             Plaats = plaats;

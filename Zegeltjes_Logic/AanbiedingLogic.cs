@@ -46,14 +46,7 @@ namespace Zegeltjes_Logic
             if (haalAanbiedingOpCommand.Execute().Gebruiker.ID == gebruikerID)
             {
                 Zegeltjes_DAL.VerwijderAanbiedingCommand verwijderAanbieding = new Zegeltjes_DAL.VerwijderAanbiedingCommand(aanbiedingID);
-                if (verwijderAanbieding.Execute())
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return verwijderAanbieding.Execute();
             }
             else
             {

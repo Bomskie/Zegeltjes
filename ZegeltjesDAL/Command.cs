@@ -6,7 +6,7 @@ namespace Zegeltjes_DAL
     public abstract class Command<T>
     {
         protected MySqlConnection _MySQLconn = new MySqlConnection("Server= localhost;Database= zegeltjes;Uid=root;Pwd= ;");
-        public DataTable dtResult = new DataTable();
+        protected DataTable dtResult = new DataTable();
 
         private void OpenConn()
         {
@@ -22,7 +22,7 @@ namespace Zegeltjes_DAL
 
         public abstract T Execute();
 
-        public void DraaiQuery(string query)
+        protected void DraaiQuery(string query)
         {
             OpenConn();
             MySqlCommand msSelect = new MySqlCommand(query, _MySQLconn);

@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zegeltjes_Logic;
 using Zegeltjes_Models;
 
 namespace Zegeltjes.Tests
 {
     [TestClass]
-    public class LogicTests
+    public class IntegrationTests
     {
         [TestMethod]
         public void AccountTests()

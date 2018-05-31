@@ -21,11 +21,7 @@ namespace Zegeltjes_Logic
             {
                 plaatsnaam = bag.HaalPlaatsNaamOpText(Plaats);
             }
-            if (plaatsnaam != null)
-            {
-                return plaatsnaam;
-            }
-            return null;
+            return plaatsnaam;
         }
     }
 }
